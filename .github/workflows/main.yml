@@ -22,5 +22,5 @@ jobs:
           ZOWE_USERNAME: ${{ secrets.ZOWE_USERNAME }}
           ZOWE_PASSWORD: ${{ secrets.ZOWE_PASSWORD }}
         run: |
-          chmod +x cobol-check/scripts/linux_gnucobol_run_tests
-          cobol-check/scripts/linux_gnucobol_run_tests
+          chmod +x .github/scripts/zowe_operations.sh
+          .github/scripts/zowe_operations.sh
