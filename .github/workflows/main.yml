@@ -34,13 +34,14 @@ jobs:
           ZOWE_USERNAME: ${{ secrets.ZOWE_USERNAME }}
           ZOWE_PASSWORD: ${{ secrets.ZOWE_PASSWORD }}
         run: |
-         zowe config init --global-config
-
-           zowe config set profiles.zosmf.properties.host $ZOWE_HOST
-           zowe config set profiles.zosmf.properties.port $ZOWE_PORT
-           zowe config set profiles.zosmf.properties.user $ZOWE_USERNAME
-           zowe config set profiles.zosmf.properties.password $ZOWE_PASSWORD
-           zowe config set profiles.zosmf.properties.rejectUnauthorized false
+          zowe profiles create zosmf-profile zosmf \
+            --host "$ZOSMF_HOST" \
+            --port "$ZOSMF_PORT" \
+            --user "$ZOWE_USERNAME" \
+            --password "$ZOWE_PASSWORD" \
+            --reject-unauthorized false
+            
+            zowe zos-files list uss-files "/"
            
       - name: Setup Mainframe Environment and Upload COBOL Check
         run: |
