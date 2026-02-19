@@ -23,7 +23,7 @@ jobs:
         run: |
           chmod +x .github/scripts/zowe_operations.sh
           .github/scripts/zowe_operations.sh
-
+ 
 
      
 
