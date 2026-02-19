@@ -21,7 +21,6 @@ jobs:
 
       - name: Install Zowe CLI
         run: |
-          npm -g config set unsafe-perm true
           npm install -g @zowe/cli
 
       - name: Create Zowe z/OSMF profile (non-interactive)
