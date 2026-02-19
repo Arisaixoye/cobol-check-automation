@@ -22,11 +22,5 @@ jobs:
           ZOWE_USERNAME: ${{ secrets.ZOWE_USERNAME }}
           ZOWE_PASSWORD: ${{ secrets.ZOWE_PASSWORD }}
         run: |
-          echo "Unzipping COBOL Check..."
-          unzip tools/cobol-check-0.2.19.zip -d tools
-
-          echo "Listing contents..."
-          ls -la tools
-
-          echo "Running COBOL Check setup test"
-
+          chmod +x cobol-check/scripts/linux_gnucobol_run_tests
+          cobol-check/scripts/linux_gnucobol_run_tests
