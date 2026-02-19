@@ -16,14 +16,33 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '11'
-      - name: Setup Mainframe Environment and Upload COBOL Check
+          
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Zowe CLI
+        run: |
+          npm install -g @zowe/cli
+          zowe --version
+
+      - name: Configure z/OSMF profile
         env:
+          ZOSMF_HOST: ${{ secrets.ZOSMF_HOST }}
+          ZOSMF_PORT: ${{ secrets.ZOSMF_PORT }}
           ZOWE_USERNAME: ${{ secrets.ZOWE_USERNAME }}
           ZOWE_PASSWORD: ${{ secrets.ZOWE_PASSWORD }}
         run: |
+         zowe profiles create zosmf-profile default \
+           --host "$ZOSMF_HOST" \
+           --port "$ZOSMF_PORT" \
+           --user "$ZOWE_USERNAME" \
+           --password "$ZOWE_PASSWORD" \
+           --reject-unauthorized false
+           
+      - name: Setup Mainframe Environment and Upload COBOL Check
+        run: |
           chmod +x .github/scripts/zowe_operations.sh
           .github/scripts/zowe_operations.sh
- 
-
-     
 
