@@ -3,7 +3,6 @@ name: COBOL Check Automation
 on:
   push:
     branches: [ "main" ]
-  workflow_dispatch:
 
 jobs:
   cobol-check:
@@ -25,25 +24,14 @@ jobs:
           node-version: "18"
 
       - name: Install Zowe CLI
-        run: |
-          npm install -g @zowe/cli
-
-      - name: Configure Zowe CLI (non-interactive)
-        env:
-          ZOWE_USERNAME: ${{ secrets.ZOWE_USERNAME }}
-          ZOWE_PASSWORD: ${{ secrets.ZOWE_PASSWORD }}
-        run: |
-          zowe config auto-init \
-            --host 204.90.115.200 \
-            --port 10443 \
-            --user "$ZOWE_USERNAME" \
-            --password "$ZOWE_PASSWORD" \
-            --reject-unauthorized false
+        run: npm install -g @zowe/cli
 
       - name: Setup Mainframe Environment and Upload COBOL Check
         env:
           ZOWE_USERNAME: ${{ secrets.ZOWE_USERNAME }}
           ZOWE_PASSWORD: ${{ secrets.ZOWE_PASSWORD }}
+          ZOSMF_HOST: ${{ secrets.ZOSMF_HOST }}
+          ZOSMF_PORT: ${{ secrets.ZOSMF_PORT }}
         run: |
           chmod +x .github/scripts/zowe_operations.sh
           .github/scripts/zowe_operations.sh
