@@ -3,6 +3,7 @@ name: COBOL Check Automation
 on:
   push:
     branches: [ "main" ]
+  workflow_dispatch:
 
 jobs:
   cobol-check:
@@ -21,16 +22,11 @@ jobs:
       - name: Set up Node.js (for Zowe CLI)
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "18"
 
       - name: Install Zowe CLI
         run: |
           npm install -g @zowe/cli
-          zowe --version
-
-      - name: Quick check z/OSMF endpoint
-        run: |
-          curl -k -I https://204.90.115.200:10443/zosmf/ || true
 
       - name: Configure Zowe CLI (non-interactive)
         env:
@@ -38,15 +34,13 @@ jobs:
           ZOWE_PASSWORD: ${{ secrets.ZOWE_PASSWORD }}
         run: |
           zowe config auto-init \
+            --host 204.90.115.200 \
+            --port 10443 \
             --user "$ZOWE_USERNAME" \
             --password "$ZOWE_PASSWORD" \
-            --host "204.90.115.200" \
-            --port "10443" \
-            --protocol "https" \
-            --reject-unauthorized false \
-            --base-path "/zosmf"
+            --reject-unauthorized false
 
-      - name: Run Zowe operations script
+      - name: Setup Mainframe Environment and Upload COBOL Check
         env:
           ZOWE_USERNAME: ${{ secrets.ZOWE_USERNAME }}
           ZOWE_PASSWORD: ${{ secrets.ZOWE_PASSWORD }}
