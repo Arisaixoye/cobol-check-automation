@@ -30,7 +30,7 @@ jobs:
           ZOWE_USER: ${{ secrets.ZOWE_USERNAME }}
           ZOWE_PASSWORD: ${{ secrets.ZOWE_PASSWORD }}
         run: |
-          zowe profiles create zosmf-profile zosmf \
+          zowe config init --global-config \
             --host "$ZOWE_HOST" \
             --port "$ZOWE_PORT" \
             --user "$ZOWE_USER" \
