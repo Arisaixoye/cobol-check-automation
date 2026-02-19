@@ -1,6 +1,6 @@
 name: COBOL Check Automation
 
-on:
+on: 
   push:
     branches: [ main ]
 
