@@ -15,14 +15,14 @@ ZOWE_USERNAME="Z89440"  # Replace with the actual username
 
 # Change to the cobolcheck directory
 cd cobol-check
-echo "Contenido del directorio:"
-ls -R
+#echo "Contenido del directorio:"
+#ls -R
 echo "Changed to $(pwd)"
 ls -al
 
 # Make cobolcheck executable
-#chmod +x cobolcheck
-chmod +x bin/cobolcheck
+chmod +x cobol-check
+#chmod +x bin/cobolcheck
 echo "Made cobolcheck executable"
 
 # Make script in scripts directory executable
@@ -37,8 +37,8 @@ run_cobolcheck() {
     echo "Running cobolcheck for $program"
 
     # Run cobolcheck, but don't exit if it fails
-    #./cobolcheck -p $program
-    ./bin/cobolcheck -p $program
+    ./cobol-check -p $program
+    #./bin/cobolcheck -p $program
     echo "Cobolcheck execution completed for $program (exceptions may have occurred)"
 
     # Check if CC##99.CBL was created, regardless of cobolcheck exit status
