@@ -1,4 +1,4 @@
-//NUMBERSJ JOB 1,NOTIFY=&SYSUID
+//NUMBERSJ JOB 1,NOTIFY=&SYSUID 
 //*******************************************************
 //COBRUN   EXEC IGYWCL
 //COBOL.SYSIN DD DSN=&SYSUID..CBL(CBL0001),DISP=SHR
