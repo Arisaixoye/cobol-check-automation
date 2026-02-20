@@ -38,6 +38,8 @@ jobs:
           zowe config set profiles.zosmf.properties.rejectUnauthorized false
            
       - name: Setup Mainframe Environment and Upload COBOL Check
+        env:
+          ZOWE_USERNAME: ${{ secrets.ZOWE_USERNAME }}
         run: |
           chmod +x .github/scripts/zowe_operations.sh
           .github/scripts/zowe_operations.sh
