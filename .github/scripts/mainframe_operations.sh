@@ -67,4 +67,4 @@ for program in NUMBERS EMPPAY DEPTPAY; do
 done
 
 echo "Mainframe operations completed"
-echo "Mainframe operations completed"
+
