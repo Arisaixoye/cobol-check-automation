@@ -26,6 +26,11 @@ jobs:
         run: |
           npm install -g @zowe/cli
           zowe --version
+      - name: Install GnuCOBOL
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gnucobol
+          cobc -V
 
       - name: Configure z/OSMF profile
         run: |
