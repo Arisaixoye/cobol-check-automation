@@ -37,10 +37,11 @@ jobs:
           zowe config set profiles.zosmf.properties.password ${{ secrets.ZOWE_PASSWORD }}
           zowe config set profiles.zosmf.properties.rejectUnauthorized false
            
-      - name: Setup Mainframe Environment and Upload COBOL Check
+      - name: Run COBOL Check on Mainframe
         env:
           ZOWE_USERNAME: ${{ secrets.ZOWE_USERNAME }}
+          ZOWE_PASSWORD: ${{ secrets.ZOWE_PASSWORD }}
         run: |
-          chmod +x .github/scripts/zowe_operations.sh
-          .github/scripts/zowe_operations.sh
+          chmod +x .github/scripts/mainframe_operations.sh
+          .github/scripts/mainframe_operations.sh
 
